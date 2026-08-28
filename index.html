@@ -7,42 +7,160 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #00d2ff; --accent: #ff9800; --bg: #0b0f19; --card: #161e2e; }
-        * { user-select: none; }
+        * { user-select: none; box-sizing: border-box; }
         body { background-color: var(--bg); color: white; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; position: relative; }
-        header { width: 100%; background: linear-gradient(135deg, #00d2ff, #3a7bd5); padding: 40px 0; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        header { width: 100%; background: linear-gradient(135deg, #00d2ff, #3a7bd5); padding: 30px 0; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        
         .banner-top, .banner-bottom { width: 100%; text-align: center; background: #0a0e15; padding: 20px 0; margin: 0 auto; display: flex; justify-content: center; align-items: center; border-radius: 12px; overflow-x: auto; }
         .banner-top { max-width: 900px; margin-top: 20px; margin-bottom: 10px; }
         .banner-bottom { max-width: 900px; margin-top: 30px; margin-bottom: 20px; }
+        
         .main-container { max-width: 900px; width: 95%; margin: 0 auto; text-align: center; }
+        
+        .back-home-btn { background: #252f44; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: bold; cursor: pointer; margin: 20px 0; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+        .back-home-btn:hover { background: var(--primary); color: #000; }
+
         .video-wrapper-outer { position: relative; z-index: 1; }
         .video-display-area { background: #000; border-radius: 20px; overflow: hidden; border: 3px solid var(--primary); box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); margin-bottom: 30px; display: none; position: relative; }
         .responsive-iframe { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
-        .responsive-iframe iframe { position: absolute; top: -160px; left: 0; width: 100%; height: calc(100% + 160px); border: 0; overflow: hidden; pointer-events: auto; }
-        .episodes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 15px; background: var(--card); padding: 25px; border-radius: 20px; max-height: 600px; overflow-y: auto; }
-        .ep-btn { background: #252f44; color: white; border: 2px solid transparent; padding: 15px 0; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .ep-btn:hover { background: var(--primary); transform: scale(1.1); border-color: white; }
+        .responsive-iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; overflow: hidden; pointer-events: auto; }
+        
+        .episodes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 15px; background: var(--card); padding: 25px; border-radius: 20px; }
+        .ep-btn { background: #252f44; color: white; border: 2px solid transparent; padding: 15px 0; border-radius: 12px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; font-family: 'Cairo', sans-serif; }
+        .ep-btn:hover { background: var(--primary); transform: scale(1.1); border-color: white; color: #000; }
         .ep-btn.active { background: var(--accent); color: black; box-shadow: 0 0 15px var(--accent); }
+
         .info-text { margin-top: 20px; color: var(--primary); }
         footer { margin-top: 50px; padding: 20px; opacity: 0.4; text-align: center; }
-        @media (max-width: 600px) { .episodes-grid { grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); gap: 10px; padding: 15px; } .ep-btn { padding: 10px 0; font-size: 1rem; } }
+        @media (max-width: 600px) { .episodes-grid { grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); gap: 10px; padding: 15px; } .ep-btn { padding: 12px 0; font-size: 1.1rem; } }
     </style>
 </head>
 <body>
-<header><h1>🎬 صدى الطفولة</h1><p>اختر رقم الحلقة وابدأ المشاهدة فوراً (52 حلقة)</p></header>
-<div class="banner-top"><script> atOptions = { 'key' : 'b8ba5b25ff25e41ea44c2df3a1b05378', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script><script src="https://www.highperformanceformat.com/b8ba5b25ff25e41ea44c2df3a1b05378/invoke.js"></script></div>
-<div class="main-container"><div class="video-wrapper-outer"><div id="videoPlayer" class="video-display-area"><div class="responsive-iframe"><iframe id="mainIframe" src="" allowfullscreen scrolling="no"></iframe></div><div id="episodeTitle" style="padding: 10px; background: var(--card); font-weight: bold;"></div></div></div><h2>اضغط على رقم الحلقة للمشاهدة:</h2><div class="episodes-grid" id="buttonsGrid"></div><p class="info-text">جميع حلقات هايدي (52 حلقة) متوفرة الآن بجودة عالية</p></div>
-<div class="banner-bottom"><script> atOptions = { 'key' : 'b8ba5b25ff25e41ea44c2df3a1b05378', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script><script src="https://www.highperformanceformat.com/b8ba5b25ff25e41ea44c2df3a1b05378/invoke.js"></script></div>
+
+<header>
+    <h1>🎬 مسلسل هايدي</h1>
+    <p>اختر رقم الحلقة وابدأ المشاهدة فوراً</p>
+</header>
+
+<!-- إعلان البنر العلوي -->
+<div class="banner-top">
+    <script> atOptions = { 'key' : 'b8ba5b25ff25e41ea44c2df3a1b05378', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script>
+    <script src="https://www.highperformanceformat.com/b8ba5b25ff25e41ea44c2df3a1b05378/invoke.js"></script>
+</div>
+
+<div class="main-container">
+    <a href="https://husamalu637.github.io/Sasuke/" class="back-home-btn">⬅ العودة إلى الرئيسية</a>
+
+    <div class="video-wrapper-outer">
+        <div id="videoPlayer" class="video-display-area">
+            <div class="responsive-iframe"><iframe id="mainIframe" src="" allowfullscreen allow="autoplay; encrypted-media" scrolling="no"></iframe></div>
+            <div id="episodeTitle" style="padding: 10px; background: var(--card); font-weight: bold;"></div>
+        </div>
+    </div>
+
+    <h2>اضغط على رقم الحلقة للمشاهدة:</h2>
+    <div class="episodes-grid" id="buttonsGrid"></div>
+    <p class="info-text">جميع حلقات هايدي الـ 52 متوفرة وتعمل بكفاءة عالية</p>
+</div>
+
+<!-- إعلان البنر السفلي -->
+<div class="banner-bottom">
+    <script> atOptions = { 'key' : 'b8ba5b25ff25e41ea44c2df3a1b05378', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} }; </script>
+    <script src="https://www.highperformanceformat.com/b8ba5b25ff25e41ea44c2df3a1b05378/invoke.js"></script>
+</div>
+
 <footer>جميع الحقوق محفوظة - صدى الطفولة &copy; 2026</footer>
+
 <script>
-    const adLink = "https://www.profitablecpmratenetwork.com/e41dj2h87?key=bef514b5ca3fa945e7a3b60e4a9ef21a";
-    const totalEpisodes = 52;
-    const episodeLinks = [];
-    for (let i = 0; i < totalEpisodes; i++) { episodeLinks.push(`https://cartoony.net/watch/220/${1914 + i}`); }
-    const grid = document.getElementById('buttonsGrid'); const player = document.getElementById('videoPlayer'); const iframe = document.getElementById('mainIframe'); const titleDisp = document.getElementById('episodeTitle');
+    const popupAdLink = "https://www.profitablecpmratenetwork.com/e41dj2h87?key=bef514b5ca3fa945e7a3b60e4a9ef21a";
+
+    // مصفوفة روابط الـ 52 حلقة كاملة (بما فيها الحلقات 36، 38، 39 الجديدة)
+    const episodeLinks = [
+        "https://meyon.com.ye/videos/embed/dcc34b08-6ba3-4d0b-8bad-26c6f5ddaf09", // 1
+        "https://meyon.com.ye/videos/embed/8262f403-cb47-4028-9ba6-184da7268664", // 2
+        "https://meyon.com.ye/videos/embed/63985ca9-b6f4-4dcd-9c6f-8c8ac3769086", // 3
+        "https://meyon.com.ye/videos/embed/c90401f1-9e43-4331-8d13-24d875cc7c12", // 4
+        "https://meyon.com.ye/videos/embed/8e18e68d-b77e-401b-a406-ca6ebf4d5eaf", // 5
+        "https://meyon.com.ye/videos/embed/2456dd7b-a96a-41ab-a9e9-0695ce177c88", // 6
+        "https://meyon.com.ye/videos/embed/27329624-8d70-4fa9-9a7c-4373b93f8b88", // 7
+        "https://meyon.com.ye/videos/embed/ce94d56e-0bfe-433a-ac3e-e613e097acb8", // 8
+        "https://meyon.com.ye/videos/embed/7497cf1f-0893-4169-92a7-84775840a5bf", // 9
+        "https://meyon.com.ye/videos/embed/31e53197-80ac-478b-8f38-b3caf2dd2069", // 10
+        "https://meyon.com.ye/videos/embed/aa067426-db84-4d08-9ce1-92f26de4d467", // 11
+        "https://meyon.com.ye/videos/embed/899c5b6f-aefe-482d-88d9-56b7df3237d8", // 12
+        "https://meyon.com.ye/videos/embed/ee0a0c50-1c55-4155-b93d-ca5ba9a84a19", // 13
+        "https://meyon.com.ye/videos/embed/ea8af950-f9c6-4f94-b4aa-256aa8a0b53b", // 14
+        "https://meyon.com.ye/videos/embed/384da663-d407-4614-a5d6-a6518586f471", // 15
+        "https://meyon.com.ye/videos/embed/4bdcf911-fc3d-4332-9142-61c08793751f", // 16
+        "https://meyon.com.ye/videos/embed/f4a2991c-2ffd-4077-a561-ee4f0e72cabb", // 17
+        "https://meyon.com.ye/videos/embed/0ed321e7-f14f-42c5-a271-3e20ad784a3f", // 18
+        "https://meyon.com.ye/videos/embed/55273569-f880-4fea-8359-8f1291e4906c", // 19
+        "https://meyon.com.ye/videos/embed/1298226a-648b-4db6-9f73-73588999c967", // 20
+        "https://meyon.com.ye/videos/embed/2a55085f-84a3-4bea-90a4-908fe2609573", // 21
+        "https://meyon.com.ye/videos/embed/8f6ef80a-cc91-48e3-a493-a38565064a3b", // 22
+        "https://meyon.com.ye/videos/embed/034c656b-4da8-419c-ba56-d318ba0b202f", // 23
+        "https://meyon.com.ye/videos/embed/257da978-2911-4942-8bc5-f668a7d902d1", // 24
+        "https://meyon.com.ye/videos/embed/e195dc55-623b-4a8d-b540-4dbe4f305489", // 25
+        "https://meyon.com.ye/videos/embed/22cf0255-0d7e-4e98-a204-868f6571f1fe", // 26
+        "https://meyon.com.ye/videos/embed/ed54724f-604b-4ec8-9da0-f0782904be87", // 27
+        "https://meyon.com.ye/videos/embed/0e0ffc8a-6620-4772-a986-9308375b0303", // 28
+        "https://meyon.com.ye/videos/embed/e84e3c76-7460-4674-a096-08da2e595155", // 29
+        "https://meyon.com.ye/videos/embed/63415f00-a23c-4560-8907-aa43096ec3d5", // 30
+        "https://meyon.com.ye/videos/embed/050103f3-68b6-4cbc-a216-cf9f4666a121", // 31
+        "https://meyon.com.ye/videos/embed/2ecde1c2-e28e-428c-8540-7bb4a5713aa2", // 32
+        "https://meyon.com.ye/videos/embed/a03d61b1-5adc-4c02-8f15-d3c4ffceb31e", // 33
+        "https://meyon.com.ye/videos/embed/d5fe73ca-d8ad-4b55-a465-b57b3299d593", // 34
+        "https://meyon.com.ye/videos/embed/4ff852d5-550e-4011-a53f-184dcec1b53f", // 35
+        "https://ok.ru/videoembed/16245815773832",                                // 36 (جديدة من ok.ru)
+        "https://meyon.com.ye/videos/embed/18f71c16-e638-498c-9f0e-f69b0a74e750", // 37
+        "https://ok.ru/videoembed/16245815904904",                                // 38 (جديدة من ok.ru)
+        "https://ok.ru/videoembed/16245816101512",                                // 39 (جديدة من ok.ru)
+        "https://meyon.com.ye/videos/embed/af98363f-dfb5-47a0-a648-db86e4c121a0", // 40
+        "https://meyon.com.ye/videos/embed/da50bf17-a8e4-48f6-85a5-835e5b80067d", // 41
+        "https://meyon.com.ye/videos/embed/6abc08df-d179-48bd-96a0-505623d42407", // 42
+        "https://meyon.com.ye/videos/embed/cc6b10d8-b0d3-48a6-8702-476600f287ec", // 43
+        "https://meyon.com.ye/videos/embed/abb6246b-3482-4b66-a694-ad2e6671f415", // 44
+        "https://meyon.com.ye/videos/embed/69c56ec9-8e64-488f-85fe-b640570ed3bd", // 45
+        "https://meyon.com.ye/videos/embed/ef51858c-5143-4c3d-9d19-a8dea3e7e0e8", // 46
+        "https://meyon.com.ye/videos/embed/659d89da-69d5-4c3c-9dd4-db01a4b80fb7", // 47
+        "https://meyon.com.ye/videos/embed/3981fccb-da9d-4ab7-a4d9-22e7f6b2cf3b", // 48
+        "https://meyon.com.ye/videos/embed/df28ecdf-67b6-41b3-9d59-d3c74ca89f41", // 49
+        "https://meyon.com.ye/videos/embed/a164fc7c-1970-48bc-9ede-fa99ac59b701", // 50
+        "https://meyon.com.ye/videos/embed/c48ad8b2-7228-4a8a-b710-2500ded68474", // 51
+        "https://meyon.com.ye/videos/embed/9dd9e9de-f978-4273-80ee-0039b192b356"  // 52
+    ];
+
+    const grid = document.getElementById('buttonsGrid'); 
+    const player = document.getElementById('videoPlayer'); 
+    const iframe = document.getElementById('mainIframe'); 
+    const titleDisp = document.getElementById('episodeTitle');
+    
     let scrollPosition = 0;
     function lockPage() { scrollPosition = window.scrollY; document.body.style.position = 'fixed'; document.body.style.top = `-${scrollPosition}px`; document.body.style.width = '100%'; }
     function unlockPage() { document.body.style.position = ''; document.body.style.top = ''; document.body.style.width = ''; window.scrollTo(0, scrollPosition); }
-    for(let i=0; i<totalEpisodes; i++){ const btn = document.createElement('button'); btn.className = 'ep-btn'; btn.innerText = i+1; btn.onclick = (function(link, idx){ return function(){ window.open(adLink, '_blank'); lockPage(); player.style.display = 'block'; iframe.src = link; titleDisp.innerText = "أنت تشاهد الآن: هايدي - الحلقة " + (idx+1); document.querySelectorAll('.ep-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); setTimeout(() => { unlockPage(); }, 500); }; })(episodeLinks[i], i); grid.appendChild(btn); }
+
+    episodeLinks.forEach((link, index) => { 
+        const btn = document.createElement('button'); 
+        btn.className = 'ep-btn'; 
+        
+        let epNum = index + 1;
+        btn.innerText = epNum; 
+        
+        btn.onclick = function() { 
+            window.open(popupAdLink, '_blank');
+            
+            lockPage(); 
+            player.style.display = 'block'; 
+            iframe.src = link; 
+            titleDisp.innerText = "أنت تشاهد الآن: هايدي - الحلقة " + epNum; 
+            
+            document.querySelectorAll('.ep-btn').forEach(b => b.classList.remove('active')); 
+            btn.classList.add('active'); 
+            
+            setTimeout(() => { unlockPage(); }, 500); 
+        }; 
+        grid.appendChild(btn); 
+    });
 </script>
 </body>
 </html>

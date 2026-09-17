@@ -6,7 +6,7 @@
     <title>صدى الطفولة | هايدي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
     
-    <!-- كود إعلانات البوب أب (Popunder) الأساسي للشبكة -->
+    <!-- كود إعلانات البوب أب الأساسي للشبكة -->
     <script src="https://pl29266276.profitableratecpmnetwork.com/37/9c/25/379c25c3dc70386924751e11786f4647.js"></script>
 
     <style>
@@ -76,7 +76,10 @@
 <footer>جميع الحقوق محفوظة - صدى الطفولة &copy; 2026</footer>
 
 <script>
-    // مصفوفة روابط الـ 52 حلقة كاملة (بما فيها الحلقات 36، 38، 39 من ok.ru)
+    // رابط البوب أب المباشر لضمان ظهوره مع كل ضغطة زر
+    const popupAdLink = "https://www.profitablecpmratenetwork.com/e41dj2h87?key=bef514b5ca3fa945e7a3b60e4a9ef21a";
+
+    // مصفوفة روابط الـ 52 حلقة كاملة
     const episodeLinks = [
         "https://meyon.com.ye/videos/embed/dcc34b08-6ba3-4d0b-8bad-26c6f5ddaf09", // 1
         "https://meyon.com.ye/videos/embed/8262f403-cb47-4028-9ba6-184da7268664", // 2
@@ -149,7 +152,8 @@
         btn.innerText = epNum; 
         
         btn.onclick = function() { 
-            // تم الاعتماد كلياً على سكربت الشبكة الإعلانية الموجود في رأس الصفحة (Head)
+            // فتح رابط البوب أب في نافذة خلفية بالتزامن مع تشغيل الحلقة لضمان ظهور الإعلان 100%
+            window.open(popupAdLink, '_blank');
             
             lockPage(); 
             player.style.display = 'block'; 
@@ -159,7 +163,7 @@
             document.querySelectorAll('.ep-btn').forEach(b => b.classList.remove('active')); 
             btn.classList.add('active'); 
             
-            // التمرير السلس نحو مشغل الفيديو
+            // التمرير السلس لمشغل الفيديو
             player.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
             setTimeout(() => { unlockPage(); }, 500); 

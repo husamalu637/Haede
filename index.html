@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صدى الطفولة | هايدي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
+    
+    <!-- كود إعلانات البوب أب (Popunder) الأساسي للشبكة -->
+    <script src="https://pl29266276.profitableratecpmnetwork.com/37/9c/25/379c25c3dc70386924751e11786f4647.js"></script>
+
     <style>
         :root { --primary: #00d2ff; --accent: #ff9800; --bg: #0b0f19; --card: #161e2e; }
         * { user-select: none; box-sizing: border-box; }
-        body { background-color: var(--bg); color: white; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; position: relative; }
+        body { background-color: var(--bg); color: white; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; position: relative; scroll-behavior: smooth; }
         header { width: 100%; background: linear-gradient(135deg, #00d2ff, #3a7bd5); padding: 30px 0; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
         
         .banner-top, .banner-bottom { width: 100%; text-align: center; background: #0a0e15; padding: 20px 0; margin: 0 auto; display: flex; justify-content: center; align-items: center; border-radius: 12px; overflow-x: auto; }
@@ -20,8 +24,8 @@
         .back-home-btn { background: #252f44; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-family: 'Cairo', sans-serif; font-weight: bold; cursor: pointer; margin: 20px 0; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
         .back-home-btn:hover { background: var(--primary); color: #000; }
 
-        .video-wrapper-outer { position: relative; z-index: 1; }
-        .video-display-area { background: #000; border-radius: 20px; overflow: hidden; border: 3px solid var(--primary); box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); margin-bottom: 30px; display: none; position: relative; }
+        .video-wrapper-outer { position: relative; z-index: 1; width: 100%; }
+        .video-display-area { background: #000; border-radius: 20px; overflow: hidden; border: 3px solid var(--primary); box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); margin-bottom: 30px; display: none; position: relative; scroll-margin-top: 20px; }
         .responsive-iframe { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
         .responsive-iframe iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; overflow: hidden; pointer-events: auto; }
         
@@ -72,9 +76,7 @@
 <footer>جميع الحقوق محفوظة - صدى الطفولة &copy; 2026</footer>
 
 <script>
-    const popupAdLink = "https://www.profitablecpmratenetwork.com/e41dj2h87?key=bef514b5ca3fa945e7a3b60e4a9ef21a";
-
-    // مصفوفة روابط الـ 52 حلقة كاملة (بما فيها الحلقات 36، 38، 39 الجديدة)
+    // مصفوفة روابط الـ 52 حلقة كاملة (بما فيها الحلقات 36، 38، 39 من ok.ru)
     const episodeLinks = [
         "https://meyon.com.ye/videos/embed/dcc34b08-6ba3-4d0b-8bad-26c6f5ddaf09", // 1
         "https://meyon.com.ye/videos/embed/8262f403-cb47-4028-9ba6-184da7268664", // 2
@@ -111,10 +113,10 @@
         "https://meyon.com.ye/videos/embed/a03d61b1-5adc-4c02-8f15-d3c4ffceb31e", // 33
         "https://meyon.com.ye/videos/embed/d5fe73ca-d8ad-4b55-a465-b57b3299d593", // 34
         "https://meyon.com.ye/videos/embed/4ff852d5-550e-4011-a53f-184dcec1b53f", // 35
-        "https://ok.ru/videoembed/16245815773832",                                // 36 (جديدة من ok.ru)
+        "https://ok.ru/videoembed/16245815773832",                                // 36
         "https://meyon.com.ye/videos/embed/18f71c16-e638-498c-9f0e-f69b0a74e750", // 37
-        "https://ok.ru/videoembed/16245815904904",                                // 38 (جديدة من ok.ru)
-        "https://ok.ru/videoembed/16245816101512",                                // 39 (جديدة من ok.ru)
+        "https://ok.ru/videoembed/16245815904904",                                // 38
+        "https://ok.ru/videoembed/16245816101512",                                // 39
         "https://meyon.com.ye/videos/embed/af98363f-dfb5-47a0-a648-db86e4c121a0", // 40
         "https://meyon.com.ye/videos/embed/da50bf17-a8e4-48f6-85a5-835e5b80067d", // 41
         "https://meyon.com.ye/videos/embed/6abc08df-d179-48bd-96a0-505623d42407", // 42
@@ -147,7 +149,7 @@
         btn.innerText = epNum; 
         
         btn.onclick = function() { 
-            window.open(popupAdLink, '_blank');
+            // تم الاعتماد كلياً على سكربت الشبكة الإعلانية الموجود في رأس الصفحة (Head)
             
             lockPage(); 
             player.style.display = 'block'; 
@@ -157,6 +159,9 @@
             document.querySelectorAll('.ep-btn').forEach(b => b.classList.remove('active')); 
             btn.classList.add('active'); 
             
+            // التمرير السلس نحو مشغل الفيديو
+            player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
             setTimeout(() => { unlockPage(); }, 500); 
         }; 
         grid.appendChild(btn); 
